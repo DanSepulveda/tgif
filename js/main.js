@@ -219,15 +219,8 @@ const myApp = ((data)=>{
                 leastTable = document.getElementById('leastLoyal')
                 mostTable = document.getElementById('mostLoyal')
                 property = 'withParty'
-                console.log('loyal')
             }
-console.log('lala')
-            renderTable(glanceData, glanceTable)
-            renderBigTables(leastData, leastTable, property)
-            renderBigTables(mostData, mostTable, property)
             
-console.log('lalo')
-
             // FUNCTION TO COUNTS MEMBERS OF AN ARRAY WHO BELONGS TO EACH PARTY
             function getNumberPerParty(members, party){
                 return members.filter(member=>member.party==party).length
@@ -264,12 +257,9 @@ console.log('lalo')
                     if(property=="missed"){
                         newCell2.innerText = data.missed_votes
                         newCell3.innerText = `${(data.missed_votes_pct).toFixed(2)} %`
-                        console.log('hola')
                     }else{
                         newCell2.innerText = `${Math.ceil(data.total_votes*data.votes_with_party_pct/100)}`
                         newCell3.innerText = `${data.votes_with_party_pct.toFixed(2)} %`
-                        console.log('aca')
-                        console.log('chao')
                     }
                     newRow.appendChild(newCell2)
                     newRow.appendChild(newCell3)
@@ -277,88 +267,14 @@ console.log('lalo')
                 })
             }
 
-            // function renderBigTables(information, father){
-            //     information.forEach(data=>{
-            //         var newRow = document.createElement('tr')
-            //         let newCell = document.createElement('td')
-            //         newCell.innerHTML=`<a href="${data.url}" target="_blank">${data.last_name} ${data.first_name} ${data.middle_name || ""}</a>`
-            //         newRow.appendChild(newCell)
-            //         let newCell2 = document.createElement('td')
-            //         newCell2.innerText = data.missed_votes
-            //         newRow.appendChild(newCell2)
-            //         let newCell3 = document.createElement('td')
-            //         newCell3.innerText = `${(data.missed_votes_pct).toFixed(2)} %`
-            //         newRow.appendChild(newCell3)
-            //         father.appendChild(newRow)
-            //     })
-            // }
-
-
-            // DATA TO FULFILL ATTENDANCE TABLES
-            // var glanceData = [
-            //     {
-            //         name: "Democrats",
-            //         qty: statistics.numOfDem,
-            //         percentage: statistics.missedVotesDem
-            //     },
-            //     {
-            //         name: "Republicans",
-            //         qty: statistics.numOfRep,
-            //         percentage: statistics.missedVotesRep
-            //     },
-            //     {
-            //         name: "Independants", 
-            //         qty: statistics.numOfInd, 
-            //         percentage: `${isNaN(parseInt(statistics.missedVotesInd))?'-':statistics.missedVotesInd}`
-            //     },
-            //     {
-            //         name: "Total",
-            //         qty: statistics.totalReps,
-            //         percentage: '-'
-            //     }
-            // ]    
-            // var data1 = statistics.leastEngaged
-            // var data2 = statistics.mostEngaged
-
-            // if(document.title.includes('Attendance')){
-            //     var glanceTable = document.getElementById('glance')
-            //     var leastTable = document.getElementById('leastEngaged')
-            //     var mostTable = document.getElementById('mostEngaged')
-            // }else{
-            //     var glanceTable = document.getElementById('glanceLoyalty')
-            //     var leastTable = document.getElementById('leastLoyal')
-            //     var mostTable = document.getElementById('mostLoyal')
-            //     var glanceData = [
-            //         {
-            //             name: "Democrats",
-            //             qty: statistics.numOfDem,
-            //             percentage: statistics.votesWithPartyDem
-            //         },
-            //         {
-            //             name: "Republicans",
-            //             qty: statistics.numOfRep,
-            //             percentage: statistics.votesWithPartyRep
-            //         },
-            //         {
-            //             name: "Independants", 
-            //             qty: statistics.numOfInd, 
-            //             percentage: votesWithPartyInd
-            //         },
-            //         {
-            //             name: "Total",
-            //             qty: statistics.totalReps,
-            //             percentage: '-'
-            //         }
-            //     ]    
-            //     var data1 = statistics.leastEngaged
-            //     var data2 = statistics.mostEngaged 
-            // }
-
-            // function preload(){
-            //     let preloader = document.getElementById('preloader')               
-            //     preloader.classList.add('d-none')
-            // }
-            // preload()
+            function preload(){
+                let preloader = document.getElementById('preloader')
+                renderTable(glanceData, glanceTable)
+                renderBigTables(leastData, leastTable, property)
+                renderBigTables(mostData, mostTable, property)
+                preloader.classList.add('d-none')
+            }
+            preload()
         }
     }
 }) 
