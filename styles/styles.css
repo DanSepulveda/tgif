@@ -1,0 +1,41 @@
+.header-logo{
+    height: 100px;
+}
+.header-icon{
+    width: 25px;
+}
+.first{
+    width: 30%;
+}
+th{
+    width: calc(70%/4);
+}
+p{
+    text-align: justify;
+}
+
+.icon{
+    width: 40px;
+    cursor: pointer;
+}
+
+.red{
+    background-color: red;
+}
+th{
+    position: sticky;
+    top: 0;
+}
+
+.loader{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    position: fixed;
+    z-index: 100;
+}
+
+#preloader img{
+    width: 20vw;
+    /* transform: matrix(); */
+}

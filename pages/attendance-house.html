@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" type="image/png" href="../assets/favicon.png"/>
+    <title>TGIF - Congressmen Attendance</title>
+</head>
+<body>
+    <!-- <div class="loader d-flex justify-content-center align-items-center" id="preloader">
+        <img src="../assets/great-seal.png" alt="">
+    </div> -->
+    <header>
+        <div class="container-fluid">
+            <div class="d-flex justify-content-center justify-content-sm-between align-items-center px-5 py-2">
+                <div>
+                    <img src="../assets/logo.jpg" alt="TGIF Logo" class="header-logo">
+                </div>
+                <div class="d-none d-sm-block">
+                    <img src="../assets/envelope.png" alt="Envelope Icon" class="header-icon">
+                    <a href="mailto:info@tgif.net">info@tgif.net</a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light px-4">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="d-sm-none">
+                    <img src="../assets/envelope.png" alt="Envelope Icon" class="header-icon">
+                    <a href="mailto:info@tgif.net">info@tgif.net</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Congress 113
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="./house.html">House</a></li>
+                                <li><a class="dropdown-item" href="#">Senate</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Attendance
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item active" href="../pages/attendance-house.html">House</a></li>
+                                <li><a class="dropdown-item" href="../pages/attendance-senate.html">Senate</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Party Loyalty
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="../pages/loyalty-house.html">House</a></li>
+                                <li><a class="dropdown-item" href="../pages/loyalty-senate.html">Senate</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container pt-1 pb-5 mb-5">
+        <!-- <div class="d-flex justify-content-end mb-5" id="hola">
+            <img src="../assets/z-out.png" alt="" class="icon ms-2" id="less">
+            <img src="../assets/z-in.png" alt="" class="icon ms-2" id="more">
+            <img src="../assets/moon.png" alt="" class="icon ms-3" id="mode">
+        </div> -->
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h2>Attendance</h2>
+                <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+                
+                <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+            </div>
+            <div class="col-12 col-lg-5 ps-lg-5">
+                <h3 class="fs-4 text-end">House at a glance</h3>
+                <table class="table table-striped text-center align-middle">
+                    <thead class="table-dark">
+                        <tr class="align-middle">
+                            <th>Party</th>
+                            <th>No. of Reps</th>
+                            <th>% Missed Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="glance">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <div>
+                <form class="d-flex row align-items-center my-4">
+                    <div class="d-flex col-4 col-md-6">
+                        <select name="state" id="states" class="form-select" aria-label="Default select example">
+                            <option value="all">View All</option>
+                        </select>
+                    </div>
+                </form>
+            </div> -->
+            <div class="col-12 col-lg-6 pe-lg-5">
+                <h3 class="fs-4">Least Engaged (Bottom 10% Attendance)</h3>
+                <table class="table table-striped text-center align-middle">
+                    <thead class="table-dark">
+                        <tr class="align-middle">
+                            <th>Name</th>
+                            <th>No. Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leastEngaged">
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-lg-6 ps-lg-5">
+                <h3 class="fs-4">Most Engaged (Top 10% Attendance)</h3>
+                <table class="table table-striped text-center align-middle">
+                    <thead class="table-dark">
+                        <tr class="align-middle">
+                            <th>Name</th>
+                            <th>No. Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mostEngaged">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer class="container-fluid bg-dark d-flex justify-content-center py-3">
+        <span class="text-white">&copy; 2021 TGIF | All Rights Reserved</span>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../js/house.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
