@@ -97,12 +97,17 @@ const myApp = ((data)=>{
             })
     
             // RUNNING FUNCTION TO RENDER TABLE WHEN PAGE LOADS THE FIRST TIME
-            showData()
+            function preload(){
+                let preloader = document.getElementById('preloader')
+                showData()
+                preloader.classList.add('d-none')
+            }
+            preload()
     
             // EVENT LISTENER FOR SELECT ELEMENT
             select.addEventListener('change', function(e){
                 stateFilter = this.value
-                showData()
+                preload()
             })
     
             // EVENT LISTENER FOR INPUTS TYPE CHECKBOX
@@ -111,7 +116,7 @@ const myApp = ((data)=>{
                     partyFilter.includes(this.value)
                         ? partyFilter=partyFilter.filter(party=>party!==this.value)
                         : partyFilter.push(this.value)
-                    showData()
+                    preload()
                 })
             })
         }else{
