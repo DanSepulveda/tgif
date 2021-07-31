@@ -282,39 +282,82 @@ const myApp = ((data)=>{
             preload()
         }
     }
-}) 
 
     // EVENT LISTENER TO INCREASE FONT SIZE
-    // let tags = ['p', 'a']
-    // let selectedElements = []
-    // tags.forEach(tag=>{
-    //     selectedElements= selectedElements.concat(Array.from(document.querySelectorAll(tag)))
-    // })
-    // let paragraphs = Array.from(document.getElementsByTagName('p'))
+    let paragraphs = Array.from(document.getElementsByTagName('p'))
+    console.log(paragraphs)
+    let buttons = Array.from(document.getElementsByTagName('a'))
+    console.log(buttons)
+    let elements = [paragraphs, buttons]
+    console.log(elements)
+    document.getElementById('more').addEventListener('click', (e)=>{
+        elements.forEach(array=>{
+            array.forEach(tag=>{
+                console.log(tag.classList())
+                if(!tag.classList.includes('fs')){
+                    tag.classList.add('fs-5')
+                    console.log('hola')
+                }else if(tag.classList.includes('fs-5')){
+                    tag.classList.remove('fs-5')
+                    tag.classList.add('fs-4')
+                    console.log('chao')
+                    // }else{  //if(paragraph.classList=="fs-4")
+                    // paragraph.classList.remove('fs-4')
+                    // paragraph.classList="fs-3"
+                }
+            })
+        })
+    })
+    // EVENT LISTENER TO DECREASE FONT SIZE
+    document.getElementById('less').addEventListener('click', (e)=>{
+        paragraphs.forEach(paragraph=>{
+            if(paragraph.classList=="fs-3"){
+                paragraph.classList.remove('fs-3')
+                paragraph.classList.add("fs-4")
+            }else if(paragraph.classList=="fs-4"){
+                paragraph.classList.remove('fs-4')
+                paragraph.classList.add("fs-5")
+            }else{
+                paragraph.classList.remove('fs-5')
+                paragraph.classList="fs-6"
+                // paragraph.classList.remove()
+            }
+    
+            // if(!paragraph.className){
+            //     paragraph.className=""
+            // }else if(paragraph.classList=="fs-4"){
+            //     paragraph.classList="fs-5"
+            // }else if(paragraph.classList=="fs-5"){
+            //     paragraph.classList="fs-6"
+            //     // paragraph.classList.remove()
+            // }else{
+            //     paragraph.className=""
+            // }
+        })
+    })
     // document.getElementById('more').addEventListener('click', (e)=>{
-    //     selectedElements.forEach(paragraph=>{
+    //     paragraphs.forEach(paragraph=>{
     //         if(!paragraph.className || paragraph.className=="" ||paragraph.classList=="fs-6"){
     //             paragraph.classList.remove('fs-6')
     //             paragraph.classList="fs-5"
     //         }else if(paragraph.classList=="fs-5"){
     //             paragraph.classList.remove('fs-5')
     //             paragraph.classList="fs-4"
-    //             }else{  //if(paragraph.classList=="fs-4")
-    //             paragraph.classList.remove('fs-4')
-    //             paragraph.classList="fs-3"
+    //             // }else{  //if(paragraph.classList=="fs-4")
+    //             // paragraph.classList.remove('fs-4')
+    //             // paragraph.classList="fs-3"
     //         }
     //     })
     // })
-    
-    // EVENT LISTENER TO DECREASE FONT SIZE
+    // // EVENT LISTENER TO DECREASE FONT SIZE
     // document.getElementById('less').addEventListener('click', (e)=>{
-    //     selectedElements.forEach(paragraph=>{
+    //     paragraphs.forEach(paragraph=>{
     //         if(paragraph.classList=="fs-3"){
     //             paragraph.classList.remove('fs-3')
-    //             paragraph.classList="fs-4"
+    //             paragraph.classList.add("fs-4")
     //         }else if(paragraph.classList=="fs-4"){
     //             paragraph.classList.remove('fs-4')
-    //             paragraph.classList="fs-5"
+    //             paragraph.classList.add("fs-5")
     //         }else{
     //             paragraph.classList.remove('fs-5')
     //             paragraph.classList="fs-6"
@@ -333,6 +376,9 @@ const myApp = ((data)=>{
     //         // }
     //     })
     // })
+}) 
+
+
     
     // EVENT LISTENER TO CHANGE BETWEEN DARK MODE AND NORMAL MODE
     // document.getElementById('mode').addEventListener('click', function(e){
