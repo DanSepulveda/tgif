@@ -9,9 +9,19 @@
     <link rel="icon" type="image/png" href="../assets/favicon.png"/>
     <title>TGIF - Congressmen Attendance</title>
 </head>
-<body>
-    <div class="loader d-flex justify-content-center align-items-center" id="preloader">
-        <img src="../assets/great-seal.png" alt="" class="img-fluid">
+<body class="min-vh-100 d-flex flex-column" id="body">
+    <div class="loader d-flex flex-column justify-content-center align-items-center" id="preloader">
+        <img src="../assets/great-seal.png" alt="">
+        <div id="floatingBarsG">
+            <div class="blockG" id="rotateG_01"></div>
+            <div class="blockG" id="rotateG_02"></div>
+            <div class="blockG" id="rotateG_03"></div>
+            <div class="blockG" id="rotateG_04"></div>
+            <div class="blockG" id="rotateG_05"></div>
+            <div class="blockG" id="rotateG_06"></div>
+            <div class="blockG" id="rotateG_07"></div>
+            <div class="blockG" id="rotateG_08"></div>
+         </div>
     </div>
     <header>
         <div class="container-fluid">
@@ -21,11 +31,11 @@
                 </div>
                 <div class="d-none d-sm-block">
                     <img src="../assets/envelope.png" alt="Envelope Icon" class="header-icon">
-                    <a href="mailto:info@tgif.net">info@tgif.net</a>
+                    <a href="mailto:info@tgif.net" class="fs-6">info@tgif.net</a>
                 </div>
             </div>
         </div>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light px-4">
+        <nav class="navbar navbar-expand-lg navbar-light px-4">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,41 +43,41 @@
                 </button>
                 <div class="d-sm-none">
                     <img src="../assets/envelope.png" alt="Envelope Icon" class="header-icon">
-                    <a href="mailto:info@tgif.net">info@tgif.net</a>
+                    <a href="mailto:info@tgif.net" class="fs-6">info@tgif.net</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                            <a class="fs-6 nav-link" aria-current="page" href="../index.html">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="fs-6 nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Congress 113
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="./house.html">House</a></li>
-                                <li><a class="dropdown-item" href="./senate.html">Senate</a></li>
+                                <li><a class="fs-6 dropdown-item" href="./house.html">House</a></li>
+                                <li><a class="fs-6 dropdown-item" href="./senate.html">Senate</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="fs-6 nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Attendance
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item active" href="#">House</a></li>
-                                <li><a class="dropdown-item" href="../pages/attendance-senate.html">Senate</a></li>
+                                <li><a class="fs-6 dropdown-item" href="#">House</a></li>
+                                <li><a class="fs-6 dropdown-item" href="../pages/attendance-senate.html">Senate</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="fs-6 nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Party Loyalty
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="../pages/loyalty-house.html">House</a></li>
-                                <li><a class="dropdown-item" href="../pages/loyalty-senate.html">Senate</a></li>
+                                <li><a class="fs-6 dropdown-item" href="../pages/loyalty-house.html">House</a></li>
+                                <li><a class="fs-6 dropdown-item" href="../pages/loyalty-senate.html">Senate</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -75,53 +85,43 @@
             </div>
         </nav>
     </header>
-    <main class="container pt-1 pb-5 mb-5">
-        <!-- <div class="d-flex justify-content-end mb-5" id="hola">
-            <img src="../assets/z-out.png" alt="" class="icon ms-2" id="less">
-            <img src="../assets/z-in.png" alt="" class="icon ms-2" id="more">
-            <img src="../assets/moon.png" alt="" class="icon ms-3" id="mode">
-        </div> -->
+    <main class="container pt-1 pb-5 mb-5 flex-grow-1" id="main">
+        <div class="d-flex justify-content-center mt-2 mb-4">
+            <img src="../assets/z-out.png" alt="Zoom Out Icon" class="icon ms-2" id="less">
+            <img src="../assets/z-in.png" alt="Zoom In Icon" class="icon ms-2" id="more">
+            <img src="../assets/moon.png" alt="Dark-Light Mode Icon" class="icon ms-4" id="mode">
+        </div>
         <div class="row">
             <div class="col-12 col-lg-7">
                 <h2>Attendance</h2>
-                <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+                <p class="fs-6">The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
                 
-                <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+                <p class="fs-6">The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
             </div>
             <div class="col-12 col-lg-5 ps-lg-5">
                 <h3 class="fs-4 text-end">House at a glance</h3>
                 <table class="table table-striped text-center align-middle">
                     <thead class="table-dark">
                         <tr class="align-middle">
-                            <th>Party</th>
-                            <th>No. of Reps</th>
-                            <th>% Missed Votes</th>
+                            <th class="fs-6">Party</th>
+                            <th class="fs-6">No. of Reps</th>
+                            <th class="fs-6">% Missed Votes</th>
                         </tr>
                     </thead>
                     <tbody id="glance">
-
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="row">
-            <!-- <div>
-                <form class="d-flex row align-items-center my-4">
-                    <div class="d-flex col-4 col-md-6">
-                        <select name="state" id="states" class="form-select" aria-label="Default select example">
-                            <option value="all">View All</option>
-                        </select>
-                    </div>
-                </form>
-            </div> -->
             <div class="col-12 col-lg-6 pe-lg-5">
                 <h3 class="fs-4">Least Engaged (Bottom 10% Attendance)</h3>
                 <table class="table table-striped text-center align-middle">
                     <thead class="table-dark">
                         <tr class="align-middle">
-                            <th>Name</th>
-                            <th>No. Missed Votes</th>
-                            <th>% Missed</th>
+                            <th class="fs-6">Name</th>
+                            <th class="fs-6">No. Missed Votes</th>
+                            <th class="fs-6">% Missed</th>
                         </tr>
                     </thead>
                     <tbody id="leastEngaged">
@@ -133,15 +133,18 @@
                 <table class="table table-striped text-center align-middle">
                     <thead class="table-dark">
                         <tr class="align-middle">
-                            <th>Name</th>
-                            <th>No. Missed Votes</th>
-                            <th>% Missed</th>
+                            <th class="fs-6">Name</th>
+                            <th class="fs-6">No. Missed Votes</th>
+                            <th class="fs-6">% Missed</th>
                         </tr>
                     </thead>
                     <tbody id="mostEngaged">
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a href="#"><img src="../assets/arrow.png" alt="Arrow icon" class="icon mt-4"></a> 
         </div>
     </main>
     <footer class="container-fluid bg-dark d-flex justify-content-center py-3">

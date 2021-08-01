@@ -9,9 +9,19 @@
     <link rel="icon" type="image/png" href="../assets/favicon.png"/>
     <title>TGIF - Congressmen</title>
 </head>
-<body>
-    <div class="loader d-flex justify-content-center align-items-center" id="preloader">
-        <img src="../assets/great-seal.png" alt="">
+<body class="min-vh-100 d-flex flex-column" id="body">
+    <div class="loader d-flex flex-column justify-content-center align-items-center" id="preloader">
+        <img src="../assets/great-seal.png" alt="" id="pre-img">
+        <div id="floatingBarsG">
+            <div class="blockG" id="rotateG_01"></div>
+            <div class="blockG" id="rotateG_02"></div>
+            <div class="blockG" id="rotateG_03"></div>
+            <div class="blockG" id="rotateG_04"></div>
+            <div class="blockG" id="rotateG_05"></div>
+            <div class="blockG" id="rotateG_06"></div>
+            <div class="blockG" id="rotateG_07"></div>
+            <div class="blockG" id="rotateG_08"></div>
+         </div>
     </div>
     <header>
         <div class="container-fluid">
@@ -21,11 +31,11 @@
                 </div>
                 <div class="d-none d-sm-block">
                     <img src="../assets/envelope.png" alt="Envelope Icon" class="header-icon">
-                    <a href="mailto:info@tgif.net">info@tgif.net</a>
+                    <a href="mailto:info@tgif.net" class="fs-6">info@tgif.net</a>
                 </div>
             </div>
         </div>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light px-4">
+        <nav class="navbar navbar-expand-lg navbar-light px-4">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,41 +43,41 @@
                 </button>
                 <div class="d-sm-none">
                     <img src="../assets/envelope.png" alt="Envelope Icon" class="header-icon">
-                    <a href="mailto:info@tgif.net">info@tgif.net</a>
+                    <a href="mailto:info@tgif.net" class="fs-6">info@tgif.net</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                            <a class="fs-6 nav-link" aria-current="page" href="../index.html">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="fs-6 nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Congress 113
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item  active" href="#">House</a></li>
-                                <li><a class="dropdown-item" href="./senate.html">Senate</a></li>
+                                <li><a class="fs-6 dropdown-item" href="#">House</a></li>
+                                <li><a class="fs-6 dropdown-item" href="./senate.html">Senate</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="fs-6 nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Attendance
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="../pages/attendance-house.html">House</a></li>
-                                <li><a class="dropdown-item" href="../pages/attendance-senate.html">Senate</a></li>
+                                <li><a class="fs-6 dropdown-item" href="../pages/attendance-house.html">House</a></li>
+                                <li><a class="fs-6 dropdown-item" href="../pages/attendance-senate.html">Senate</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            <a class="fs-6 nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Party Loyalty
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="../pages/loyalty-house.html">House</a></li>
-                                <li><a class="dropdown-item" href="../pages/loyalty-senate.html">Senate</a></li>
+                                <li><a class="fs-6 dropdown-item" href="../pages/loyalty-house.html">House</a></li>
+                                <li><a class="fs-6 dropdown-item" href="../pages/loyalty-senate.html">Senate</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -75,60 +85,65 @@
             </div>
         </nav>
     </header>
-    <main class="container pt-1 pb-5 mb-5">
-        <!-- <div class="d-flex justify-content-end mb-5" id="hola">
-            <img src="../assets/z-out.png" alt="" class="icon ms-2" id="less">
-            <img src="../assets/z-in.png" alt="" class="icon ms-2" id="more">
-            <img src="../assets/moon.png" alt="" class="icon ms-3" id="mode">
-        </div> -->
-        <div class="row">
-            <div class="col-12 col-lg-8">
+    <main class="container pt-1 pb-5 mb-5 flex-grow-1" id="main">
+        <div class="d-flex justify-content-center mt-2 mb-4">
+            <img src="../assets/z-out.png" alt="Zoom Out Icon" class="icon ms-2" id="less">
+            <img src="../assets/z-in.png" alt="Zoom In Icon" class="icon ms-2" id="more">
+            <img src="../assets/moon.png" alt="Dark-Light Mode Icon" class="icon ms-4" id="mode">
+        </div>
+        <div class="row d-flex align-items-center">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-9">
                 <h2>Congressmen</h2>
-                <p>The major power of the House is to pass federal legislation that affects the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no majority in the Electoral College.</p>
+                <p class="fs-6">The major power of the House is to pass federal legislation that affects the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no majority in the Electoral College.</p>
                 
-                <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but every state is entitled to at least one representative.</p>
+                <p class="fs-6">Each U.S. state is represented in the House in proportion to its population as measured in the census, but every state is entitled to at least one representative.</p>
             </div>
-            <div class="d-none d-lg-block col-4"></div>
+            <div class="d-none d-lg-block col-lg-1 d-xl-none"></div>
+            <div class="d-none d-md-block col-md-4 col-lg-3 col-xl-3">
+                <img src="../assets/congress.png" alt="Congress Logo" class="img-fluid ps-lg-5">
+            </div>
         </div>
         <div class="container">
             <div>
                 <form class="d-flex row align-items-center my-4">
-                    <div class="d-flex col-4 col-md-6">
-                        <!-- <label for="states">Filter by State</label> -->
-                        <select name="state" id="states" class="form-select" aria-label="Default select example">
-                            <option value="all">View All</option>
+                    <div class="d-flex col-12 col-lg-6">
+                        <select name="state" id="states" class="form-select fs-6" aria-label="Default select example">
+                            <option value="all" class="fs-6">View All</option>
                         </select>
                     </div>
-                    <div class="d-flex justify-content-between col-8 col-md-6">
+                    <div class="d-flex justify-content-between col-12 col-lg-6">
                         <div class="form-check">
-                            <label for="democrat" class="form-check-label">Democrat</label>
+                            <label for="democrat" class="fs-6 form-check-label">Democrat</label>
                             <input checked type="checkbox" name="party" id="democrat" class="form-check-input" value="D">
                         </div>
                         <div class="form-check">
-                            <label for="republican" class="form-check-label">Republican</label>
+                            <label for="republican" class="fs-6 form-check-label">Republican</label>
                             <input checked type="checkbox" name="party" id="republican" class="form-check-input" value="R">
                         </div>
                         <div class="form-check">
-                            <label for="independant" class="form-check-label">Independant</label>
+                            <label for="independant" class="fs-6 form-check-label">Independant</label>
                             <input checked type="checkbox" name="party" id="independant" class="form-check-input" value="ID">
                         </div>
                     </div>
                 </form>
             </div>
             <table class="table table-striped text-center align-middle">
-                <caption id="results" class="caption-top"></caption>
+                <caption id="results" class="caption-top fs-6"></caption>
                 <thead class="table-dark">
                     <tr class="align-middle">
-                        <th class="first fs-5">Name</th>
-                        <th class="fs-5">Party</th>
-                        <th class="fs-5">State</th>
-                        <th class="fs-5">Years in Office</th>
-                        <th class="fs-5">% Votes w/ Party</th>
+                        <th class="first fs-6">Name</th>
+                        <th class="fs-6">Party</th>
+                        <th class="fs-6">State</th>
+                        <th class="fs-6">Years in Office</th>
+                        <th class="fs-6">% Votes w/ Party</th>
                     </tr>
                 </thead>
                 <tbody id="houseData">
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a href="#"><img src="../assets/arrow.png" alt="Arrow icon" class="icon mt-4"></a> 
         </div>
     </main>
     <footer class="container-fluid bg-dark d-flex justify-content-center py-3">

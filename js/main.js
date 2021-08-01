@@ -11,7 +11,28 @@ fetch(`https://api.propublica.org/congress/v1/113/${url}/members.json`, init)
         let data = [...json.results[0].members]
         myApp(data)
     })
-    .catch(err=>console.log(err.message))
+    .catch(err=>{
+        console.log(err.message)
+        document.getElementById('preloader').classList.add('d-none')
+        document.getElementById('main').innerHTML=`
+        <h1 class="text-center">OOPS!</h1>
+        <div class="row">
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="../assets/unplug.png" alt="unplug icon" class="errImg">
+                <div>
+                    <h2>We're so sorry</h2>
+                    <p> We're having some problems to show information</p>
+                    <div class="d-flex flex-column">
+                        <form method="get" action="" class="d-flex flex-column">
+                            <label for="emal">Please enter your email and we'll let you know as soon as we solve situation</label>
+                            <input type="email" id="email" name="email">
+                            <input type="submit" value="Notify Me!">
+                        </form>
+                    </div
+                </div>
+            </div>
+        </div>`
+    })
 
 // MAIN APPLICATION
 const myApp = ((data)=>{
@@ -47,6 +68,7 @@ const myApp = ((data)=>{
                     let newRow = document.createElement('tr')
                     memberData.forEach((information)=>{
                         let tableData = document.createElement('td')
+                        tableData.classList.add('fs-6')
                         if(information==memberData[0]){
                             let anchor = document.createElement('a')
                             anchor.href = member.url
@@ -81,6 +103,7 @@ const myApp = ((data)=>{
             let select = document.getElementById('states')
             nonRepeatedStates.sort().forEach(state=>{
                 let option = document.createElement('option')
+                option.classList.add('fs-6')
                 option.value=state
                 option.innerText=state
                 select.appendChild(option)
@@ -235,6 +258,7 @@ const myApp = ((data)=>{
                     var newRow = document.createElement('tr')
                     for(const property in data){
                         let newCell = document.createElement('td')
+                        newCell.classList.add('fs-6')
                         newCell.innerText = data[property]
                         newRow.appendChild(newCell)
                     }
@@ -246,10 +270,13 @@ const myApp = ((data)=>{
                 information.forEach(data=>{
                     var newRow = document.createElement('tr')
                     let newCell = document.createElement('td')
+                    newCell.classList.add('fs-6')
                     newCell.innerHTML=`<a href="${data.url}" target="_blank">${data.last_name} ${data.first_name} ${data.middle_name || ""}</a>`
                     newRow.appendChild(newCell)
                     let newCell2 = document.createElement('td')
                     let newCell3 = document.createElement('td')
+                    newCell2.classList.add('fs-6')
+                    newCell3.classList.add('fs-6')
                     if(property=="missed"){
                         newCell2.innerText = data.missed_votes
                         newCell3.innerText = `${(data.missed_votes_pct).toFixed(2)} %`
@@ -273,105 +300,116 @@ const myApp = ((data)=>{
             preload()
         }
     }
+
+    let elements = []
+    let wantedTags = ['p', 'a', 'option', 'label', 'caption', 'th', 'td', 'select']
+    wantedTags.forEach(tag=>{
+        elements.push(Array.from(document.getElementsByTagName(tag)))
+    })
+
     // EVENT LISTENER TO INCREASE FONT SIZE
-    let paragraphs = Array.from(document.getElementsByTagName('p'))
-    // console.log(paragraphs)
-    // let buttons = Array.from(document.getElementsByTagName('a'))
-    // console.log(buttons)
-    // let elements = [paragraphs, buttons]
-    // console.log(elements)
     document.getElementById('more').addEventListener('click', (e)=>{
-        paragraphs.forEach(paragraph=>{
-            if(!paragraph.classList.contains('fs')){
-                paragraph.classList.add('fs-5')
-                console.log('hola')
-            }else if(paragraph.classList.contains('fs-5')){
-                paragraph.classList.remove('fs-5')
-                paragraph.classList.add('fs-4')
-                console.log('chao')
-            }
+        elements.forEach(element=>{
+            element.forEach(tag=>{
+                if(tag.classList.contains('fs-6')){
+                    tag.classList.remove('fs-6')
+                    tag.classList.add('fs-5')
+                    console.log('hola')
+                }else if(tag.classList.contains('fs-5')){
+                    tag.classList.remove('fs-5')
+                    tag.classList.add('fs-4')
+                    console.log('chao')
+                }else if(tag.classList.contains('fs-4')){
+                    tag.classList.remove('fs-4')
+                    tag.classList.add('fs-3')
+                }
+            })
         })
     })
-    // EVENT LISTENER TO DECREASE FONT SIZE
-    // document.getElementById('less').addEventListener('click', (e)=>{
-    //     paragraphs.forEach(paragraph=>{
-    //         if(paragraph.classList=="fs-3"){
-    //             paragraph.classList.remove('fs-3')
-    //             paragraph.classList.add("fs-4")
-    //         }else if(paragraph.classList=="fs-4"){
-    //             paragraph.classList.remove('fs-4')
-    //             paragraph.classList.add("fs-5")
-    //         }else{
-    //             paragraph.classList.remove('fs-5')
-    //             paragraph.classList="fs-6"
-    //             // paragraph.classList.remove()
-    //         }
-    
-    //         // if(!paragraph.className){
-    //         //     paragraph.className=""
-    //         // }else if(paragraph.classList=="fs-4"){
-    //         //     paragraph.classList="fs-5"
-    //         // }else if(paragraph.classList=="fs-5"){
-    //         //     paragraph.classList="fs-6"
-    //         //     // paragraph.classList.remove()
-    //         // }else{
-    //         //     paragraph.className=""
-    //         // }
-    //     })
-    // })
-    // document.getElementById('more').addEventListener('click', (e)=>{
-    //     paragraphs.forEach(paragraph=>{
-    //         if(!paragraph.className || paragraph.className=="" ||paragraph.classList=="fs-6"){
-    //             paragraph.classList.remove('fs-6')
-    //             paragraph.classList="fs-5"
-    //         }else if(paragraph.classList=="fs-5"){
-    //             paragraph.classList.remove('fs-5')
-    //             paragraph.classList="fs-4"
-    //             // }else{  //if(paragraph.classList=="fs-4")
-    //             // paragraph.classList.remove('fs-4')
-    //             // paragraph.classList="fs-3"
-    //         }
-    //     })
-    // })
-    // // EVENT LISTENER TO DECREASE FONT SIZE
-    // document.getElementById('less').addEventListener('click', (e)=>{
-    //     paragraphs.forEach(paragraph=>{
-    //         if(paragraph.classList=="fs-3"){
-    //             paragraph.classList.remove('fs-3')
-    //             paragraph.classList.add("fs-4")
-    //         }else if(paragraph.classList=="fs-4"){
-    //             paragraph.classList.remove('fs-4')
-    //             paragraph.classList.add("fs-5")
-    //         }else{
-    //             paragraph.classList.remove('fs-5')
-    //             paragraph.classList="fs-6"
-    //             // paragraph.classList.remove()
-    //         }
-    
-    //         // if(!paragraph.className){
-    //         //     paragraph.className=""
-    //         // }else if(paragraph.classList=="fs-4"){
-    //         //     paragraph.classList="fs-5"
-    //         // }else if(paragraph.classList=="fs-5"){
-    //         //     paragraph.classList="fs-6"
-    //         //     // paragraph.classList.remove()
-    //         // }else{
-    //         //     paragraph.className=""
-    //         // }
-    //     })
-    // })
-}) 
 
+    // EVENT LISTENER TO DECREASE FONT SIZE
+    document.getElementById('less').addEventListener('click', (e)=>{
+        elements.forEach(element=>{
+            element.forEach(tag=>{
+                if(tag.classList.contains('fs-3')){
+                    tag.classList.remove('fs-3')
+                    tag.classList.add("fs-4")
+                }else if(tag.classList.contains('fs-4')){
+                    tag.classList.remove('fs-4')
+                    tag.classList.add("fs-5")
+                }else if(tag.classList.contains('fs-5')){
+                    tag.classList.remove('fs-5')
+                    tag.classList.add('fs-6')
+                }
+            })
+        })
+    })
 
     
     // EVENT LISTENER TO CHANGE BETWEEN DARK MODE AND NORMAL MODE
+    let entireBody = document.getElementById('body')
+    let allElements = Array.from(document.querySelectorAll( 'body *' ))
+    document.getElementById('mode').addEventListener('click', function(e){
+        if(localStorage.getItem('mode')=='default'){
+            this.setAttribute('src', '../assets/sun.png')
+            localStorage.setItem('mode', 'dark')
+            entireBody.classList.add('bg-dark')
+            allElements.forEach(element=>{
+                element.classList.add('bg-dark', 'text-white')
+            })
+            // Array.from(document.getElementsByTagName('table')).forEach(table=>{
+            //     table.classList.add('table-dark', 'table-hover')
+            // })
+        }else{
+            this.setAttribute('src', '../assets/moon.png')
+            localStorage.setItem('mode', 'default')
+            entireBody.classList.remove('bg-dark')
+            allElements.forEach(element=>{
+                element.classList.remove('bg-dark', 'text-white')
+            })
+        }
+    }) 
+    let modeIcon = document.getElementById('mode')
+    if(localStorage.getItem('mode')=='default' || !localStorage.getItem('mode')){
+        modeIcon.setAttribute('src', '../assets/moon.png')
+        entireBody.classList.remove('bg-dark')
+        allElements.forEach(element=>{
+            element.classList.remove('bg-dark', 'text-white')
+        })
+    }else{
+        modeIcon.setAttribute('src', '../assets/sun.png')
+        entireBody.classList.add('bg-dark')
+        allElements.forEach(element=>{
+            element.classList.add('bg-dark', 'text-white')
+        })
+    }
     // document.getElementById('mode').addEventListener('click', function(e){
-    //     let body = document.getElementById('body')
-    //     if(this.getAttribute('src') == './assets/moon.png'){
-    //         this.setAttribute('src', './assets/sun.png')
-    //         body.className+=" bg-dark text-white"
+    //     if(this.getAttribute('src') == '../assets/moon.png'){
+    //         this.setAttribute('src', '../assets/sun.png')
+    //         localStorage.setItem('mode', 'dark')
+    //         entireBody.classList.add('bg-dark')
+    //         allElements.forEach(element=>{
+    //             element.classList.add('bg-dark', 'text-white')
+    //         })
     //     }else{
-    //         this.setAttribute('src', './assets/moon.png')
-    //         body.classList.remove(" bg-dark text-white")
+    //         this.setAttribute('src', '../assets/moon.png')
+    //         localStorage.setItem('mode', 'default')
+    //         entireBody.classList.remove('bg-dark')
+    //         allElements.forEach(element=>{
+    //             element.classList.remove('bg-dark', 'text-white')
+    //         })
     //     }
-    // })
+    // }) 
+    
+    // if(localStorage.getItem('mode')=='default'){
+    //     entireBody.classList.remove('bg-dark')
+    //     allElements.forEach(element=>{
+    //         element.classList.remove('bg-dark', 'text-white')
+    //     })
+    // }else{
+    //     entireBody.classList.add('bg-dark')
+    //     allElements.forEach(element=>{
+    //         element.classList.add('bg-dark', 'text-white')
+    //     })
+    // }
+})
