@@ -1,15 +1,9 @@
 // DECLARE VARIABLE TO CHOOSE ENDPOINT
-const url = document.title.includes('Senators')
-    ? 'senate'
-    : 'house'
+const url = document.title.includes('Senators') ? 'senate' : 'house'
 
 // DECLARE VARIABLE TO USE API KEY
-let init = {
-    headers:{
-        'X-API-Key': '7IBdtYXOoDf6A5WjVIpTLkZIdUOvTB4gJ4BqmjJL'
-    }
-}
-// hola
+let init = {headers:{'X-API-Key': '7IBdtYXOoDf6A5WjVIpTLkZIdUOvTB4gJ4BqmjJL'}}
+
 // FETCHING API
 fetch(`https://api.propublica.org/congress/v1/113/${url}/members.json`, init)
     .then(res=>res.json())
@@ -19,41 +13,37 @@ fetch(`https://api.propublica.org/congress/v1/113/${url}/members.json`, init)
     })
     .catch(err=>console.log(err.message))
 
-    // MAIN APPLICATION
+// MAIN APPLICATION
 const myApp = ((data)=>{
+
     // CODE TO EXECUTE ONLY IN HOME PAGE
     if(document.title=='Transparent Government In Fact'){
-        // CHANGE INNER TEXT OF BUTTON READ MORE
         document.getElementById('rm-button').addEventListener('click', function (e){
             this.innerText = this.innerText == 'Read More' ? 'View Less' : 'Read More'
         })
     }else{
         // CREATING A COPY OF DATA TO USE IT IN ALL TABLES
         let members = JSON.parse(JSON.stringify(data))
-        // 
+
         if(document.getElementById('houseData')||document.getElementById('senateData')){
     
-            let table = document.getElementById('houseData') 
-                ? document.getElementById('houseData')
-                : document.getElementById('senateData')
+            let table = document.getElementById('houseData') ? document.getElementById('houseData') : document.getElementById('senateData')
             
             var stateFilter = 'all'
             var membersToShow = []
     
             // FUNCTION TO DEFINE FILTERS BEFORE RENDERING THE TABLE
             function readFilters(){
-                stateFilter=="all" 
-                    ? membersToShow=members
-                    : membersToShow=members.filter(member=>member.state==stateFilter)
+                membersToShow = stateFilter=='all' ? members :  membersToShow=members.filter(member=>member.state==stateFilter)
                 membersToShow=membersToShow.filter(member=>partyFilter.includes(member.party))
             }
     
             // DEFINING FUNCTION TO RENDER THE TABLE
             function showData(){
-                table.innerHTML=""
+                table.innerHTML=''
                 readFilters()
                 membersToShow.forEach(member=>{
-                    let memberData= [`${member.last_name} ${member.first_name} ${member.middle_name || ""}`, member.party, member.state, member.seniority, `${member.votes_with_party_pct.toFixed(2)} %`]
+                    let memberData= [`${member.last_name} ${member.first_name} ${member.middle_name || ''}`, member.party, member.state, member.seniority, `${member.votes_with_party_pct.toFixed(2)} %`]
                     let newRow = document.createElement('tr')
                     memberData.forEach((information)=>{
                         let tableData = document.createElement('td')
@@ -71,7 +61,7 @@ const myApp = ((data)=>{
                     table.appendChild(newRow)
                 })
                 document.getElementById('results').innerText=`Showing ${membersToShow.length} of ${members.length} entries`
-                // console.log(`Showing ${membersToShow.length} entries of ${members.length}`)
+                document.getElementById('preloader').classList.add('d-none')
             }
     
             // CREATING  TWO ARRAYS. ONE THAT INCLUDES ALL STATES AND THE SECOND THAT INCLUDES ALL PARTIES (BOTH NON REPEATED)
@@ -97,17 +87,18 @@ const myApp = ((data)=>{
             })
     
             // RUNNING FUNCTION TO RENDER TABLE WHEN PAGE LOADS THE FIRST TIME
-            function preload(){
-                let preloader = document.getElementById('preloader')
-                showData()
-                preloader.classList.add('d-none')
-            }
-            preload()
+
+            showData()
+            // function preload(){
+            //     let preloader = document.getElementById('preloader')
+            //     preloader.classList.add('d-none')
+            // }
+            // preload()
     
             // EVENT LISTENER FOR SELECT ELEMENT
             select.addEventListener('change', function(e){
                 stateFilter = this.value
-                preload()
+                showData()
             })
     
             // EVENT LISTENER FOR INPUTS TYPE CHECKBOX
@@ -116,7 +107,7 @@ const myApp = ((data)=>{
                     partyFilter.includes(this.value)
                         ? partyFilter=partyFilter.filter(party=>party!==this.value)
                         : partyFilter.push(this.value)
-                    preload()
+                    showData()
                 })
             })
         }else{
@@ -282,59 +273,52 @@ const myApp = ((data)=>{
             preload()
         }
     }
-
     // EVENT LISTENER TO INCREASE FONT SIZE
     let paragraphs = Array.from(document.getElementsByTagName('p'))
-    console.log(paragraphs)
-    let buttons = Array.from(document.getElementsByTagName('a'))
-    console.log(buttons)
-    let elements = [paragraphs, buttons]
-    console.log(elements)
+    // console.log(paragraphs)
+    // let buttons = Array.from(document.getElementsByTagName('a'))
+    // console.log(buttons)
+    // let elements = [paragraphs, buttons]
+    // console.log(elements)
     document.getElementById('more').addEventListener('click', (e)=>{
-        elements.forEach(array=>{
-            array.forEach(tag=>{
-                console.log(tag.classList())
-                if(!tag.classList.includes('fs')){
-                    tag.classList.add('fs-5')
-                    console.log('hola')
-                }else if(tag.classList.includes('fs-5')){
-                    tag.classList.remove('fs-5')
-                    tag.classList.add('fs-4')
-                    console.log('chao')
-                    // }else{  //if(paragraph.classList=="fs-4")
-                    // paragraph.classList.remove('fs-4')
-                    // paragraph.classList="fs-3"
-                }
-            })
+        paragraphs.forEach(paragraph=>{
+            if(!paragraph.classList.contains('fs')){
+                paragraph.classList.add('fs-5')
+                console.log('hola')
+            }else if(paragraph.classList.contains('fs-5')){
+                paragraph.classList.remove('fs-5')
+                paragraph.classList.add('fs-4')
+                console.log('chao')
+            }
         })
     })
     // EVENT LISTENER TO DECREASE FONT SIZE
-    document.getElementById('less').addEventListener('click', (e)=>{
-        paragraphs.forEach(paragraph=>{
-            if(paragraph.classList=="fs-3"){
-                paragraph.classList.remove('fs-3')
-                paragraph.classList.add("fs-4")
-            }else if(paragraph.classList=="fs-4"){
-                paragraph.classList.remove('fs-4')
-                paragraph.classList.add("fs-5")
-            }else{
-                paragraph.classList.remove('fs-5')
-                paragraph.classList="fs-6"
-                // paragraph.classList.remove()
-            }
+    // document.getElementById('less').addEventListener('click', (e)=>{
+    //     paragraphs.forEach(paragraph=>{
+    //         if(paragraph.classList=="fs-3"){
+    //             paragraph.classList.remove('fs-3')
+    //             paragraph.classList.add("fs-4")
+    //         }else if(paragraph.classList=="fs-4"){
+    //             paragraph.classList.remove('fs-4')
+    //             paragraph.classList.add("fs-5")
+    //         }else{
+    //             paragraph.classList.remove('fs-5')
+    //             paragraph.classList="fs-6"
+    //             // paragraph.classList.remove()
+    //         }
     
-            // if(!paragraph.className){
-            //     paragraph.className=""
-            // }else if(paragraph.classList=="fs-4"){
-            //     paragraph.classList="fs-5"
-            // }else if(paragraph.classList=="fs-5"){
-            //     paragraph.classList="fs-6"
-            //     // paragraph.classList.remove()
-            // }else{
-            //     paragraph.className=""
-            // }
-        })
-    })
+    //         // if(!paragraph.className){
+    //         //     paragraph.className=""
+    //         // }else if(paragraph.classList=="fs-4"){
+    //         //     paragraph.classList="fs-5"
+    //         // }else if(paragraph.classList=="fs-5"){
+    //         //     paragraph.classList="fs-6"
+    //         //     // paragraph.classList.remove()
+    //         // }else{
+    //         //     paragraph.className=""
+    //         // }
+    //     })
+    // })
     // document.getElementById('more').addEventListener('click', (e)=>{
     //     paragraphs.forEach(paragraph=>{
     //         if(!paragraph.className || paragraph.className=="" ||paragraph.classList=="fs-6"){
