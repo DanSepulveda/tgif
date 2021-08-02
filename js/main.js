@@ -5,7 +5,8 @@ const url = document.title.includes('Senators') ? 'senate' : 'house'
 let init = {headers:{'X-API-Key': '7IBdtYXOoDf6A5WjVIpTLkZIdUOvTB4gJ4BqmjJL'}}
 
 // FETCHING API
-fetch(`https://api.propublica.org/congress/v1/113/${url}/members.json`, init)
+if(document.title!=='Transparent Government In Fact'){
+    fetch(`https://api.propublica.org/congress/v1/113/${url}/members.json`, init)
     .then(res=>res.json())
     .then(json=>{
         let data = [...json.results[0].members]
@@ -33,9 +34,14 @@ fetch(`https://api.propublica.org/congress/v1/113/${url}/members.json`, init)
             </div>
         </div>`
     })
+}else{
+    myApp([])
+}
+
 
 // MAIN APPLICATION
-const myApp = ((data)=>{
+function myApp(data){
+    
     // CODE TO EXECUTE ONLY IN HOME PAGE
     if(document.title=='Transparent Government In Fact'){
         document.getElementById('rm-button').addEventListener('click', function (e){
@@ -262,6 +268,8 @@ const myApp = ((data)=>{
                     }
                     father.appendChild(newRow)
                 })
+                let preloader = document.getElementById('preloader')
+                preloader.classList.add('d-none')
             }
             
             function renderBigTables(information, father, property){
@@ -286,16 +294,22 @@ const myApp = ((data)=>{
                     newRow.appendChild(newCell3)
                     father.appendChild(newRow)
                 })
-            }
-
-            function preload(){
                 let preloader = document.getElementById('preloader')
-                renderTable(glanceData, glanceTable)
-                renderBigTables(leastData, leastTable, property)
-                renderBigTables(mostData, mostTable, property)
                 preloader.classList.add('d-none')
             }
-            preload()
+
+            renderTable(glanceData, glanceTable)
+            renderBigTables(leastData, leastTable, property)
+            renderBigTables(mostData, mostTable, property)
+
+            // function preload(){
+            //     let preloader = document.getElementById('preloader')
+            //     renderTable(glanceData, glanceTable)
+            //     renderBigTables(leastData, leastTable, property)
+            //     renderBigTables(mostData, mostTable, property)
+            //     preloader.classList.add('d-none')
+            // }
+            // preload()
         }
     }
 
@@ -312,11 +326,9 @@ const myApp = ((data)=>{
                 if(tag.classList.contains('fs-6')){
                     tag.classList.remove('fs-6')
                     tag.classList.add('fs-5')
-                    console.log('hola')
                 }else if(tag.classList.contains('fs-5')){
                     tag.classList.remove('fs-5')
                     tag.classList.add('fs-4')
-                    console.log('chao')
                 }else if(tag.classList.contains('fs-4')){
                     tag.classList.remove('fs-4')
                     tag.classList.add('fs-3')
@@ -378,4 +390,4 @@ const myApp = ((data)=>{
             element.classList.add('bg-dark', 'text-white')
         })
     }
-})
+}

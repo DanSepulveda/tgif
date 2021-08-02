@@ -28,7 +28,7 @@ p{
 .loader{
     width: 100vw;
     height: 100vh;
-    background-color: rgba(204, 204, 204);
+    background-color: #444;
     position: fixed;
     z-index: 100;
 }
