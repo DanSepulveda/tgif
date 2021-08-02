@@ -287,7 +287,7 @@ function myApp(data){
                         newCell2.innerText = data.missed_votes
                         newCell3.innerText = `${(data.missed_votes_pct).toFixed(2)} %`
                     }else{
-                        newCell2.innerText = `${Math.ceil(data.total_votes*data.votes_with_party_pct/100)}`
+                        newCell2.innerText = `${Math.ceil((data.total_votes-data.missed_votes)*data.votes_with_party_pct/100)}`
                         newCell3.innerText = `${data.votes_with_party_pct.toFixed(2)} %`
                     }
                     newRow.appendChild(newCell2)
@@ -301,15 +301,6 @@ function myApp(data){
             renderTable(glanceData, glanceTable)
             renderBigTables(leastData, leastTable, property)
             renderBigTables(mostData, mostTable, property)
-
-            // function preload(){
-            //     let preloader = document.getElementById('preloader')
-            //     renderTable(glanceData, glanceTable)
-            //     renderBigTables(leastData, leastTable, property)
-            //     renderBigTables(mostData, mostTable, property)
-            //     preloader.classList.add('d-none')
-            // }
-            // preload()
         }
     }
 
@@ -378,6 +369,7 @@ function myApp(data){
 
     let modeIcon = document.getElementById('mode')
     if(localStorage.getItem('mode')=='default' || !localStorage.getItem('mode')){
+        localStorage.setItem('mode', 'default')
         document.title=='Transparent Government In Fact' ? modeIcon.setAttribute('src', './assets/moon.png') : modeIcon.setAttribute('src', '../assets/moon.png')
         entireBody.classList.remove('bg-dark')
         allElements.forEach(element=>{

@@ -21,10 +21,6 @@ p{
     cursor: pointer;
 }
 
-.red{
-    background-color: red;
-}
-
 .loader{
     width: 100vw;
     height: 100vh;
@@ -35,7 +31,6 @@ p{
 
 #preloader img{
     width: 20vw;
-    /* transform: matrix(); */
 }
 
 .nav-link{
@@ -45,7 +40,6 @@ p{
 }
 
 .active{
-    /* box-shadow: 2px 2px 1px black; */
     background-color: #a11c20;
     border-radius: 0 1rem 0 1rem;
 }
@@ -232,8 +226,6 @@ footer{
 		-webkit-transform:rotate(-135deg);
 		-moz-transform:rotate(-135deg);
 }
-
-
 
 @keyframes fadeG{
 	0%{
