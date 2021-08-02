@@ -36,7 +36,6 @@ fetch(`https://api.propublica.org/congress/v1/113/${url}/members.json`, init)
 
 // MAIN APPLICATION
 const myApp = ((data)=>{
-
     // CODE TO EXECUTE ONLY IN HOME PAGE
     if(document.title=='Transparent Government In Fact'){
         document.getElementById('rm-button').addEventListener('click', function (e){
@@ -84,6 +83,10 @@ const myApp = ((data)=>{
                 })
                 document.getElementById('results').innerText=`Showing ${membersToShow.length} of ${members.length} entries`
                 document.getElementById('preloader').classList.add('d-none')
+                if(membersToShow.length==0){
+                    table.innerHTML=`
+                    <tr><td colspan="5">NO RESULTS. PLEASE SELECT A PARTY.</td></tr>`
+                }
             }
     
             // CREATING  TWO ARRAYS. ONE THAT INCLUDES ALL STATES AND THE SECOND THAT INCLUDES ALL PARTIES (BOTH NON REPEATED)
@@ -110,13 +113,8 @@ const myApp = ((data)=>{
             })
     
             // RUNNING FUNCTION TO RENDER TABLE WHEN PAGE LOADS THE FIRST TIME
-
             showData()
-            // function preload(){
-            //     let preloader = document.getElementById('preloader')
-            //     preloader.classList.add('d-none')
-            // }
-            // preload()
+
     
             // EVENT LISTENER FOR SELECT ELEMENT
             select.addEventListener('change', function(e){
@@ -345,23 +343,19 @@ const myApp = ((data)=>{
         })
     })
 
-    
     // EVENT LISTENER TO CHANGE BETWEEN DARK MODE AND NORMAL MODE
     let entireBody = document.getElementById('body')
     let allElements = Array.from(document.querySelectorAll( 'body *' ))
     document.getElementById('mode').addEventListener('click', function(e){
         if(localStorage.getItem('mode')=='default'){
-            this.setAttribute('src', '../assets/sun.png')
+            document.title=='Transparent Government In Fact' ? this.setAttribute('src', './assets/sun.png') : this.setAttribute('src', '../assets/sun.png')
             localStorage.setItem('mode', 'dark')
             entireBody.classList.add('bg-dark')
             allElements.forEach(element=>{
                 element.classList.add('bg-dark', 'text-white')
             })
-            // Array.from(document.getElementsByTagName('table')).forEach(table=>{
-            //     table.classList.add('table-dark', 'table-hover')
-            // })
         }else{
-            this.setAttribute('src', '../assets/moon.png')
+            document.title=='Transparent Government In Fact' ? this.setAttribute('src', './assets/moon.png') : this.setAttribute('src', '../assets/moon.png') 
             localStorage.setItem('mode', 'default')
             entireBody.classList.remove('bg-dark')
             allElements.forEach(element=>{
@@ -369,47 +363,19 @@ const myApp = ((data)=>{
             })
         }
     }) 
+
     let modeIcon = document.getElementById('mode')
     if(localStorage.getItem('mode')=='default' || !localStorage.getItem('mode')){
-        modeIcon.setAttribute('src', '../assets/moon.png')
+        document.title=='Transparent Government In Fact' ? modeIcon.setAttribute('src', './assets/moon.png') : modeIcon.setAttribute('src', '../assets/moon.png')
         entireBody.classList.remove('bg-dark')
         allElements.forEach(element=>{
             element.classList.remove('bg-dark', 'text-white')
         })
     }else{
-        modeIcon.setAttribute('src', '../assets/sun.png')
+        document.title=='Transparent Government In Fact' ? modeIcon.setAttribute('src', './assets/sun.png') : modeIcon.setAttribute('src', '../assets/sun.png')
         entireBody.classList.add('bg-dark')
         allElements.forEach(element=>{
             element.classList.add('bg-dark', 'text-white')
         })
     }
-    // document.getElementById('mode').addEventListener('click', function(e){
-    //     if(this.getAttribute('src') == '../assets/moon.png'){
-    //         this.setAttribute('src', '../assets/sun.png')
-    //         localStorage.setItem('mode', 'dark')
-    //         entireBody.classList.add('bg-dark')
-    //         allElements.forEach(element=>{
-    //             element.classList.add('bg-dark', 'text-white')
-    //         })
-    //     }else{
-    //         this.setAttribute('src', '../assets/moon.png')
-    //         localStorage.setItem('mode', 'default')
-    //         entireBody.classList.remove('bg-dark')
-    //         allElements.forEach(element=>{
-    //             element.classList.remove('bg-dark', 'text-white')
-    //         })
-    //     }
-    // }) 
-    
-    // if(localStorage.getItem('mode')=='default'){
-    //     entireBody.classList.remove('bg-dark')
-    //     allElements.forEach(element=>{
-    //         element.classList.remove('bg-dark', 'text-white')
-    //     })
-    // }else{
-    //     entireBody.classList.add('bg-dark')
-    //     allElements.forEach(element=>{
-    //         element.classList.add('bg-dark', 'text-white')
-    //     })
-    // }
 })
