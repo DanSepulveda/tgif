@@ -37,6 +37,7 @@ if(document.title!=='Transparent Government In Fact'){
 }else{
     myApp([])
 }
+console.log('hola')
 
 
 // MAIN APPLICATION
