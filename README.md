@@ -1,6 +1,6 @@
 # Transparent Government in Fact
 
-TGIF is a webpage build with HTML, CSS y JS
+TGIF is a webpage build with HTML, CSS y JS to show some information about USA Congressman and Senators consuming ProPublica Congress API.
 
 ![image](./assets/tgif.png)
 
@@ -8,7 +8,7 @@ TGIF is a webpage build with HTML, CSS y JS
 
 ### Demo
 
-You can see the demo of this project on the following link: [MyTinerary](https://tgif-dansep.netlify.app/)
+You can see the demo of this project on the following link: [TGIF](https://tgif-dansep.netlify.app/)
 
 ### Installation 🔧
 
